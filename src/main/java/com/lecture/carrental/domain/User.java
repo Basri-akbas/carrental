@@ -18,58 +18,57 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long  id;
+    private Long id;
 
-    @Size(max =15)
-    @NotNull(message ="Please enter your first name")
-    @Column(nullable = false,length = 15)
-    private String  firstName;
+    @Size(max = 15)
+    @NotNull(message = "Please enter your first name")
+    @Column(nullable = false, length = 15)
+    private String firstName;
 
-    @Size(max =15)
-    @NotNull(message ="Please enter your last name")
-    @Column(nullable = false,length = 15)
+    @Size(max = 15)
+    @NotNull(message = "Please enter your last name")
+    @Column(nullable = false, length = 15)
     private String lastName;
 
-    @Size(min = 4,max = 60,message = "min 4 max 60 karekter")
-    @NotNull(message ="Please enter your password")
-    @Column(nullable = false,length = 120)
+    @Size(min = 4, max = 60)
+    @NotNull(message = "Please enter your password")
+    @Column(nullable = false, length = 120)
     private String password;
 
     @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",
             message = "Please enter valid phone number")
-    @Size(min = 14,max = 14,message = "min 14 max 14 karekter")
-    @NotNull(message ="Please enter your phone number")
-    @Column(nullable = false,length = 14)
+    @Size(min = 14, max = 14)
+    @NotNull(message = "Please enter your phone number")
+    @Column(nullable = false, length = 14)
     private String phoneNumber;
 
-    @Email(message = "Please enter your email")
-    @Size(min = 5,max = 150)
-    @NotNull(message ="Please enter your email")
-    @Column(nullable = false,unique = true,length = 14)
+    @Email(message = "Please enter valid email")
+    @Size(min = 5, max = 150)
+    @NotNull(message = "Please enter your email")
+    @Column(nullable = false, unique = true, length = 14)
     private String email;
 
     @Size(max = 250)
-    @NotNull(message ="Please enter your address")
-    @Column(nullable = false,length = 250)
+    @NotNull(message = "Please enter your address")
+    @Column(nullable = false, length = 250)
     private String address;
 
     @Size(max = 15)
-    @NotNull(message ="Please enter your zip code")
-    @Column(nullable = false,length = 15)
+    @NotNull(message = "Please enter your zip code")
+    @Column(nullable = false, length = 15)
     private String zipCode;
 
     @Column(nullable = false)
-    private Boolean builtin=false;
+    private Boolean builtIn = false;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
 }

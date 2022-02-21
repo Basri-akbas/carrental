@@ -6,14 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import com.lecture.carrental.domain.enumeration.UserRole;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 public class Role {
 
     @Id
@@ -23,10 +29,9 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(length = 30)
     private UserRole name;
+
     @Override
     public String toString() {
         return "" + name + '}';
     }
-
-
 }

@@ -14,20 +14,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-    private Long  id;
+    private Long id;
+
+    private String email;
+
     @JsonIgnore
     private String password;
-    private String email;
+
     private Collection<? extends GrantedAuthority> authorities;
 
-    public static UserDetailsImpl build(User user){
-        List<GrantedAuthority> authorities=user.getRoles().stream()
+    public static UserDetailsImpl build(User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
+
         return new UserDetailsImpl(
                 user.getId(),
                 user.getEmail(),
@@ -37,7 +41,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
